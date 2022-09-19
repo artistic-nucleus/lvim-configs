@@ -275,14 +275,14 @@ lvim.plugins = {
                 -- c = "cd $dir && gcc $fileName -ggdb3 -o $fileNameWithoutExt && $dir/$fileNameWithoutExt",
                 --use above line and comment the function below to skip asking for compiler everytime
                 c = function()
-                    local complier = vim.fn.input("Select complier 1.Clang 2.GCC : ")
-                    if complier == "1" then
+                    local compiler = vim.fn.input("Select compiler 1.Clang 2.GCC 3.Custom command : ")
+                    if compiler == "1" then
                         print(" Using Clang")
                         return "cd $dir && clang $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif complier == "2" then
+                    elseif compiler == "2" then
                         print(" Using GCC")
                         return "cd $dir && gcc $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif complier == "3" then
+                    elseif compiler == "3" then
                         local command = vim.fn.input("Enter command : ")
                         return command
                     else
@@ -291,14 +291,14 @@ lvim.plugins = {
                 end,
 
                 cpp = function()
-                    local complier = vim.fn.input("Select complier 1.clang++ 2.g++ : ")
-                    if complier == "1" then
+                    local compiler = vim.fn.input("Select compiler 1.Clang++ 2.g++ 3.Custom command : ")
+                    if compiler == "1" then
                         print(" Using Clang++")
                         return "cd $dir && clang++ $fileName -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif complier == "2" then
+                    elseif compiler == "2" then
                         print(" Using g++")
                         return "cd $dir && g++ $fileName -g -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif complier == "3" then
+                    elseif compiler == "3" then
                         local command = vim.fn.input("Enter command : ")
                         return command
                     else
