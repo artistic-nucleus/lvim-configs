@@ -403,12 +403,12 @@ lvim.lsp.on_attach_callback = function(client, bufnr)
 end
 
 --tab settings
-vim.cmd("set tabstop=4")
-vim.cmd("set shiftwidth=4")
+vim.cmd("set tabstop=2")
+vim.cmd("set shiftwidth=2")
 vim.cmd("set expandtab")
-vim.cmd("set smarttab")
+-- vim.cmd("set smarttab")
 vim.cmd("set autoindent")
---vim.cmd 'set softtabstop=4'
+vim.cmd 'set softtabstop=2'
 vim.cmd("set wrap")
 
 --custom keybindings
