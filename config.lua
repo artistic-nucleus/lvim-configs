@@ -282,6 +282,9 @@ lvim.plugins = {
                     elseif complier == "2" then
                         print(" Using GCC")
                         return "cd $dir && gcc $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+                    elseif complier == "3" then
+                        local command = vim.fn.input("Enter command : ")
+                        return command
                     else
                         print(" : Invalid Choice")
                     end
@@ -295,6 +298,9 @@ lvim.plugins = {
                     elseif complier == "2" then
                         print(" Using g++")
                         return "cd $dir && g++ $fileName -g -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+                    elseif complier == "3" then
+                        local command = vim.fn.input("Enter command : ")
+                        return command
                     else
                         print(" : Invalid Choice")
                     end
