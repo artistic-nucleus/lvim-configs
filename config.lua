@@ -75,15 +75,15 @@ lvim.builtin.bufferline.options.always_show_bufferline = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-    "bash",
-    "cpp",
-    "c",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "css",
-    "java",
+  "bash",
+  "cpp",
+  "c",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "css",
+  "java",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -136,188 +136,188 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-    { command = "cpplint", filetypes = { "c", "cpp" } },
-    -- { command = "flake8", filetypes = { "python" } },
-    --   {
-    --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    --     command = "shellcheck",
-    --     ---@usage arguments to pass to the formatter
-    --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    --     extra_args = { "--severity", "warning" },
-    --   },
-    --   {
-    --     command = "codespell",
-    --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    --     filetypes = { "javascript", "python" },
-    --   },
+  { command = "cpplint", filetypes = { "c", "cpp" } },
+  -- { command = "flake8", filetypes = { "python" } },
+  --   {
+  --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --     command = "shellcheck",
+  --     ---@usage arguments to pass to the formatter
+  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --     extra_args = { "--severity", "warning" },
+  --   },
+  --   {
+  --     command = "codespell",
+  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --     filetypes = { "javascript", "python" },
+  --   },
 }
 
 --clangd formatting setup
 local clangd_flags = {
-    "--fallback-style=google",
-    "--background-index",
-    "-j=12",
-    "--all-scopes-completion",
-    "--pch-storage=disk",
-    "--clang-tidy",
-    "--log=error",
-    "--completion-style=detailed",
-    "--header-insertion=iwyu",
-    "--header-insertion-decorators",
-    "--enable-config",
-    "--offset-encoding=utf-16",
-    "--ranking-model=heuristics",
-    "--folding-ranges",
+  "--fallback-style=google",
+  "--background-index",
+  "-j=12",
+  "--all-scopes-completion",
+  "--pch-storage=disk",
+  "--clang-tidy",
+  "--log=error",
+  "--completion-style=detailed",
+  "--header-insertion=iwyu",
+  "--header-insertion-decorators",
+  "--enable-config",
+  "--offset-encoding=utf-16",
+  "--ranking-model=heuristics",
+  "--folding-ranges",
 }
 
 local clangd_bin = "clangd"
 
 local opts = {
-    cmd = { clangd_bin, unpack(clangd_flags) },
+  cmd = { clangd_bin, unpack(clangd_flags) },
 }
 require("lvim.lsp.manager").setup("clangd", opts)
 
 -- Additional Plugins
 lvim.plugins = {
 
-    {
-        "ray-x/lsp_signature.nvim",
-        config = function()
-            require("lsp_signature").setup({})
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require("lsp_signature").setup({})
+    end,
+  },
+
+  -- { "lukas-reineke/indent-blankline.nvim",
+  --     config = function ()
+  --     require("indent_blankline").setup({
+  --        --config
+  -- })
+  -- end,
+  -- },
+
+  --better targetssssss
+  { "wellle/targets.vim" },
+
+  --fugitive for github
+  { "tpope/vim-fugitive" },
+
+  -- todo comments
+  {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+
+  { "unblevable/quick-scope" },
+
+  -- {
+  --     --debug adapter ui
+  --     "rcarriga/nvim-dap-ui",
+  -- },
+
+  --theme plugins
+  -- { "navarasu/onedark.nvim",
+  --     config = function()
+  --         require("onedark").setup({
+  --             style = 'deep',
+  --         })
+  --     end
+  -- },
+
+  { "catppuccin/nvim", as = "catppuccin" },
+
+  { "sainnhe/edge", as = "edge" },
+
+  --surround plugin
+  {
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+
+  --session manager
+  -- {
+  --     'rmagatti/auto-session',
+  --     config = function()
+  --         require('auto-session').setup {
+  --             log_level = 'info',
+  --             auto_session_suppress_dirs = { '~/', '~/Projects' }
+  --         }
+  --     end
+  -- },
+
+  --code runner
+  {
+    "CRAG666/code_runner.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    require("code_runner").setup({
+      startinsert = true,
+      mode = "toggle",
+      focus = true,
+
+      -- project_path = "~/.config/lvim/project_manager.json",
+
+      -- put here the commands by filetype
+      filetype = {
+        java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        python = "python3 -u",
+        typescript = "deno run",
+        javascript = "cd $dir && node $dir/$fileName",
+        rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
+
+        -- c = "cd $dir && gcc $fileName -ggdb3 -o $fileNameWithoutExt && $dir/$fileNameWithoutExt",
+        --use above line and comment the function below to skip asking for compiler everytime
+        c = function()
+          local compiler = vim.fn.input("Select compiler 1.Clang 2.GCC 3.Custom command : ")
+          if compiler == "1" then
+            print(" Using Clang")
+            return "cd $dir && clang $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+          elseif compiler == "2" then
+            print(" Using GCC")
+            return "cd $dir && gcc $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+          elseif compiler == "3" then
+            local command = vim.fn.input("Enter command : ")
+            return command
+          else
+            print(" : Invalid Choice")
+          end
         end,
-    },
 
-    -- { "lukas-reineke/indent-blankline.nvim",
-    --     config = function ()
-    --     require("indent_blankline").setup({
-    --        --config
-    -- })
-    -- end,
-    -- },
-
-    --better targetssssss
-    { "wellle/targets.vim" },
-
-    --fugitive for github
-    { "tpope/vim-fugitive" },
-
-    -- todo comments
-    {
-        "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
+        cpp = function()
+          local compiler = vim.fn.input("Select compiler 1.Clang++ 2.g++ 3.Custom command : ")
+          if compiler == "1" then
+            print(" Using Clang++")
+            return "cd $dir && clang++ $fileName -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+          elseif compiler == "2" then
+            print(" Using g++")
+            return "cd $dir && g++ $fileName -g -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+          elseif compiler == "3" then
+            local command = vim.fn.input("Enter command : ")
+            return command
+          else
+            print(" : Invalid Choice")
+          end
         end,
-    },
+        -- cpp = "cd $dir && g++ $fileName -g -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+      },
 
-    { "unblevable/quick-scope" },
-
-    -- {
-    --     --debug adapter ui
-    --     "rcarriga/nvim-dap-ui",
-    -- },
-
-    --theme plugins
-    -- { "navarasu/onedark.nvim",
-    --     config = function()
-    --         require("onedark").setup({
-    --             style = 'deep',
-    --         })
-    --     end
-    -- },
-
-    { "catppuccin/nvim", as = "catppuccin" },
-
-    { "sainnhe/edge", as = "edge" },
-
-    --surround plugin
-    {
-        "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end,
-    },
-
-    --session manager
-    -- {
-    --     'rmagatti/auto-session',
-    --     config = function()
-    --         require('auto-session').setup {
-    --             log_level = 'info',
-    --             auto_session_suppress_dirs = { '~/', '~/Projects' }
-    --         }
-    --     end
-    -- },
-
-    --code runner
-    {
-        "CRAG666/code_runner.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        require("code_runner").setup({
-            startinsert = true,
-            mode = "toggle",
-            focus = true,
-
-            -- project_path = "~/.config/lvim/project_manager.json",
-
-            -- put here the commands by filetype
-            filetype = {
-                java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-                python = "python3 -u",
-                typescript = "deno run",
-                javascript = "cd $dir && node $dir/$fileName",
-                rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
-
-                -- c = "cd $dir && gcc $fileName -ggdb3 -o $fileNameWithoutExt && $dir/$fileNameWithoutExt",
-                --use above line and comment the function below to skip asking for compiler everytime
-                c = function()
-                    local compiler = vim.fn.input("Select compiler 1.Clang 2.GCC 3.Custom command : ")
-                    if compiler == "1" then
-                        print(" Using Clang")
-                        return "cd $dir && clang $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif compiler == "2" then
-                        print(" Using GCC")
-                        return "cd $dir && gcc $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif compiler == "3" then
-                        local command = vim.fn.input("Enter command : ")
-                        return command
-                    else
-                        print(" : Invalid Choice")
-                    end
-                end,
-
-                cpp = function()
-                    local compiler = vim.fn.input("Select compiler 1.Clang++ 2.g++ 3.Custom command : ")
-                    if compiler == "1" then
-                        print(" Using Clang++")
-                        return "cd $dir && clang++ $fileName -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif compiler == "2" then
-                        print(" Using g++")
-                        return "cd $dir && g++ $fileName -g -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-                    elseif compiler == "3" then
-                        local command = vim.fn.input("Enter command : ")
-                        return command
-                    else
-                        print(" : Invalid Choice")
-                    end
-                end,
-                -- cpp = "cd $dir && g++ $fileName -g -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt",
-            },
-
-            -- template to add projects in future
-            -- project = {
-            --     ["~/project"] = {
-            --         name = "Test Project",
-            --         description = " Project in C",
-            --         command = "gcc *.c && ./a.out",
-            --     }
-            -- }
-        }),
-    },
+      -- template to add projects in future
+      -- project = {
+      --     ["~/project"] = {
+      --         name = "Test Project",
+      --         description = " Project in C",
+      --         command = "gcc *.c && ./a.out",
+      --     }
+      -- }
+    }),
+  },
 }
 
 --setup for dapui
@@ -399,7 +399,7 @@ lvim.plugins = {
 -- })
 --lsp_signature attach
 lvim.lsp.on_attach_callback = function(client, bufnr)
-    require("lsp_signature").on_attach()
+  require("lsp_signature").on_attach()
 end
 
 --tab settings
