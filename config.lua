@@ -10,6 +10,7 @@ an executable
 
 --load configs
 -- require "user.todo_comments.lua"
+require "user.plugins"
 
 -- general
 vim.opt.cmdheight = 1
@@ -177,148 +178,6 @@ local opts = {
 }
 require("lvim.lsp.manager").setup("clangd", opts)
 
--- Additional Plugins
-lvim.plugins = {
-
-  {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("lsp_signature").setup({})
-    end,
-  },
-
-  -- { "lukas-reineke/indent-blankline.nvim",
-  --     config = function ()
-  --     require("indent_blankline").setup({
-  --        --config
-  -- })
-  -- end,
-  -- },
-
-  --better targetssssss
-  { "wellle/targets.vim" },
-
-  --fugitive for github
-  { "tpope/vim-fugitive" },
-
-  -- todo comments
-  {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
-  },
-
-  { "unblevable/quick-scope" },
-
-  -- {
-  --     --debug adapter ui
-  --     "rcarriga/nvim-dap-ui",
-  -- },
-
-  --theme plugins
-  -- { "navarasu/onedark.nvim",
-  --     config = function()
-  --         require("onedark").setup({
-  --             style = 'deep',
-  --         })
-  --     end
-  -- },
-
-  { "catppuccin/nvim", as = "catppuccin" },
-
-  { "sainnhe/edge", as = "edge" },
-
-  --surround plugin
-  {
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
-  },
-
-  --session manager
-  -- {
-  --     'rmagatti/auto-session',
-  --     config = function()
-  --         require('auto-session').setup {
-  --             log_level = 'info',
-  --             auto_session_suppress_dirs = { '~/', '~/Projects' }
-  --         }
-  --     end
-  -- },
-
-  --code runner
-  {
-    "CRAG666/code_runner.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    require("code_runner").setup({
-      startinsert = true,
-      mode = "toggle",
-      focus = true,
-
-      -- project_path = "~/.config/lvim/project_manager.json",
-
-      -- put here the commands by filetype
-      filetype = {
-        java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-        python = "python3 -u",
-        typescript = "deno run",
-        javascript = "cd $dir && node $dir/$fileName",
-        rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
-
-        -- c = "cd $dir && gcc $fileName -ggdb3 -o $fileNameWithoutExt && $dir/$fileNameWithoutExt",
-        --use above line and comment the function below to skip asking for compiler everytime
-        c = function()
-          local compiler = vim.fn.input("Select compiler 1.Clang 2.GCC 3.Custom command : ")
-          if compiler == "1" then
-            print(" Using Clang")
-            return "cd $dir && clang $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-          elseif compiler == "2" then
-            print(" Using GCC")
-            return "cd $dir && gcc $fileName -Wall -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-          elseif compiler == "3" then
-            local command = vim.fn.input("Enter command : ")
-            return command
-          else
-            print(" : Invalid Choice")
-          end
-        end,
-
-        cpp = function()
-          local compiler = vim.fn.input("Select compiler 1.Clang++ 2.g++ 3.Custom command : ")
-          if compiler == "1" then
-            print(" Using Clang++")
-            return "cd $dir && clang++ $fileName -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-          elseif compiler == "2" then
-            print(" Using g++")
-            return "cd $dir && g++ $fileName -g -Wall -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-          elseif compiler == "3" then
-            local command = vim.fn.input("Enter command : ")
-            return command
-          else
-            print(" : Invalid Choice")
-          end
-        end,
-        -- cpp = "cd $dir && g++ $fileName -g -std=c++17 -o $fileNameWithoutExt && ./$fileNameWithoutExt",
-      },
-
-      -- template to add projects in future
-      -- project = {
-      --     ["~/project"] = {
-      --         name = "Test Project",
-      --         description = " Project in C",
-      --         command = "gcc *.c && ./a.out",
-      --     }
-      -- }
-    }),
-  },
-}
 
 --setup for dapui
 -- require("dapui").setup({
@@ -414,10 +273,10 @@ vim.cmd("set wrap")
 --custom keybindings
 --general
 --keybindings for code runner
-vim.keymap.set("n", "<leader>R", ":RunCode<CR>", { noremap = true, silent = false })
-vim.keymap.set("n", "<leader>r", ":RunFile<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>R", "<cmd>wa<CR><cmd>RunCode<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>r", "<cmd>w<CR><cmd>RunFile<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>rft", ":RunFile tab<CR>", { noremap = true, silent = false })
-vim.keymap.set("n", "<leader>rp", ":RunProject<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>rp", "<cmd>wa<CR><cmd>RunProject<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>rc", ":RunClose<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>crf", ":CRFiletype<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>crp", ":CRProjects<CR>", { noremap = true, silent = false })
