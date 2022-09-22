@@ -61,6 +61,11 @@ M.config = function()
         name = "Test Project",
         description = " Project in C",
         command = "gcc *.c && ./a.out",
+      },
+      ["~/code/cpp/project"] = {
+        name = "Test Project",
+        description = " Project in Cpp",
+        command = "g++ *.cpp && ./a.out",
       }
     }
   }
