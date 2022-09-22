@@ -269,9 +269,12 @@ vim.cmd("set expandtab")
 vim.cmd("set autoindent")
 vim.cmd 'set softtabstop=2'
 vim.cmd("set wrap")
+vim.cmd("set foldmethod=indent")
+vim.api.nvim_exec([[autocmd! FileType TelescopeResults setlocal nofoldenable]], false)
 
 --custom keybindings
 --general
+lvim.keys.normal_mode["<leader>z"] = "za"
 --keybindings for code runner
 vim.keymap.set("n", "<leader>R", "<cmd>wa<CR><cmd>RunCode<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>r", "<cmd>w<CR><cmd>RunFile<CR>", { noremap = true, silent = false })
