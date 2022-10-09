@@ -19,7 +19,12 @@ lvim.format_on_save = true
 vim.g.edge_style = "aura"
 vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
 vim.g.edge_diagnostic_virtual_text = "colored"
-lvim.colorscheme = "catppuccin"
+lvim.colorscheme = "edge"
+lvim.lsp.diagnostics.virtual_text = false
+-- lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
+-- if lvim.builtin.fancy_statusline.active then
+-- require("user.lualine").config()
+-- end
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
