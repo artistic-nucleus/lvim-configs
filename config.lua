@@ -143,6 +143,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "cpplint", filetypes = { "c", "cpp" } },
+  { command = "cppcheck", filetypes = { "cpp" }, args = { "--language=c++" } },
   -- { command = "flake8", filetypes = { "python" } },
   --   {
   --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
