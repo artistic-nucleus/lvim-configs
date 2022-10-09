@@ -1,6 +1,18 @@
 -- Additional Plugins
 lvim.plugins = {
   {
+    "ray-x/web-tools.nvim",
+    require 'web-tools'.setup({
+      keymaps = {
+        rename = nil, -- by default use same setup of lspconfig
+        repeat_rename = '-', -- do not set '.' to repeat, will override nvim's binding for '.'
+      },
+    })
+  },
+  {
+    "wakatime/vim-wakatime"
+  },
+  {
     "ray-x/lsp_signature.nvim",
     config = function()
       require("lsp_signature").setup()
