@@ -301,3 +301,11 @@ lvim.keys.normal_mode["<S-h>"] = "<cmd>BufferLineCyclePrev<CR>"
 --for todo function
 vim.keymap.set("n", "<leader>tf", ':exe ":TodoQuickFix cwd=" .. fnameescape(expand("%:p"))<CR>')
 vim.keymap.set("n", "<leader>td", ':exe ":TodoQuickFix cwd=" .. fnameescape(expand("%:h"))<CR>')
+
+--colortils
+vim.keymap.set("n", "<leader>kl", ":Colortils lighten<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>kd", ":Colortils darken<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>kp", ":Colortils picker<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>kgt", ":Colortils gradient<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>kgs", ":Colortils greyscale<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>kc", ":Colortils css list<CR>", { noremap = true, silent = false })

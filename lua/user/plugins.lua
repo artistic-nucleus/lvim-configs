@@ -1,6 +1,24 @@
 -- Additional Plugins
 lvim.plugins = {
   {
+    "NvChad/nvim-colorizer.lua",
+    require 'colorizer'.setup {
+      filetypes = {
+        'css',
+        'javascript',
+        'html',
+      },
+      user_default_options = { tailwind = true, mode = "background" }
+    }
+  },
+  {
+    "max397574/colortils.nvim",
+    cmd = "Colortils",
+    config = function()
+      require("colortils").setup()
+    end,
+  },
+  {
     "ray-x/web-tools.nvim",
     require 'web-tools'.setup({
       keymaps = {
