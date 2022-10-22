@@ -8,7 +8,7 @@ lvim.plugins = {
         'javascript',
         'html',
       },
-      user_default_options = { tailwind = true, mode = "background" }
+      user_default_options = { tailwind = true, mode = "background", css = true }
     }
   },
   {
