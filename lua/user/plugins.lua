@@ -1,6 +1,11 @@
 -- Additional Plugins
 lvim.plugins = {
   {
+    'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim',
+        require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+  },
+  {
     "NvChad/nvim-colorizer.lua",
     require 'colorizer'.setup {
       filetypes = {
