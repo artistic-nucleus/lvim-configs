@@ -291,7 +291,7 @@ vim.keymap.set("n", "<leader>crf", ":CRFiletype<CR>", { noremap = true, silent =
 vim.keymap.set("n", "<leader>crp", ":CRProjects<CR>", { noremap = true, silent = false })
 
 --hack to toggle colorscheme
-lvim.keys.normal_mode["<F7>"] = "<cmd>Catppuccin latte<CR>"
+lvim.keys.normal_mode["<F7>"] = "<cmd>colorscheme catppuccin<CR><cmd>Catppuccin latte<CR>"
 lvim.keys.normal_mode["<F6>"] = "<cmd>Catppuccin frappe<CR><cmd>colorscheme edge<CR>"
 
 --tab switch buffer
