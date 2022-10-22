@@ -11,6 +11,7 @@ an executable
 --load configs
 -- require "user.todo_comments.lua"
 require "user.plugins"
+require "user.cpp-dap"
 
 -- general
 vim.opt.cmdheight = 1
@@ -71,7 +72,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.dap.active = true
@@ -219,36 +220,6 @@ require("lvim.lsp.manager").setup("clangd", opts)
 --     },
 -- })
 
---setup for dap
--- local dap = require("dap")
--- -- dap.defaults.fallback.terminal_win_cmd = '50vsplit new'
--- dap.adapters.lldb = {
---     type = 'executable',
---     command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
---     name = 'lldb'
--- }
--- dap.configurations.cpp = {
---     {
---         name = "Launch file",
---         type = "lldb",
---         --type = "codelldb",
---         request = "launch",
-
---         program = function()
---             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
---         end,
-
---         -- args = "1",
---         args = function()
---           local argument_string = vim.fn.input('Program arguments: ')
---           return vim.fn.split(argument_string, " ", true)
---         end,
-
---         cwd = "${workspaceFolder}",
---         -- stopOnEntry = true,
---     },
--- }
--- dap.configurations.c = dap.configurations.cpp
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
