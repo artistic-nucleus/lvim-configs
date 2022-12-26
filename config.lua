@@ -163,7 +163,7 @@ linters.setup {
 
 --clangd formatting setup
 local clangd_flags = {
-  "--fallback-style=google",
+  "--fallback-style=Google",
   "--background-index",
   "-j=12",
   "--all-scopes-completion",
