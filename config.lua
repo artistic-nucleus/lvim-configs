@@ -14,14 +14,15 @@ require "user.plugins"
 require "user.cpp-dap"
 
 -- general
-vim.opt.cmdheight = 1
-lvim.log.level = "warn"
-lvim.format_on_save = true
-vim.g.edge_style = "aura"
-vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
+vim.opt.title                      = false
+vim.opt.cmdheight                  = 0
+lvim.log.level                     = "warn"
+lvim.format_on_save                = true
+vim.g.edge_style                   = "aura"
+vim.g.catppuccin_flavour           = "latte" -- latte, frappe, macchiato, mocha
 vim.g.edge_diagnostic_virtual_text = "colored"
-lvim.colorscheme = "edge"
-lvim.lsp.diagnostics.virtual_text = false
+lvim.colorscheme                   = "edge"
+lvim.lsp.diagnostics.virtual_text  = false
 -- lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 -- if lvim.builtin.fancy_statusline.active then
 -- require("user.lualine").config()
